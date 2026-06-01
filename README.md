@@ -17,6 +17,8 @@ npm run dev          # opens the example deck (example.md) — a tour of every l
 npm run build        # static build    ·   npm run export   # PDF
 ```
 
+> `npm run export` uses Playwright; the first run downloads a Chromium build.
+
 To start your **own** deck, copy `example.md` + `schedule.ts` next to each other and
 edit them (in this repo, or in a consuming repo that depends on the theme):
 
@@ -117,13 +119,14 @@ neither is set the title moves up.
 ```ts
 const partners = [                                   // colour + legend source
   { id: 'HEL',  label: 'Helios Lab (prime)', color: 'var(--t-prime)' },
-  { id: 'VEGA', label: 'Vega Systems (sub)',  color: 'var(--t-subco)' },
+  { id: 'VEGA', label: 'Vega Systems',       color: 'var(--t-subco)' },
+  { id: 'ORI',  label: 'Orion Cloud',        color: '#9C5BB8' },   // any CSS colour
 ]
 export const schedule = {
-  months: 12,
+  months: 9,
   partners,
-  groups: [ { code:'WP1', name:'…', span:'M1–M3', rows:[
-    { sub:'WP1.1', partner:'HEL', name:'…', start:1, end:3 },   // bar = start..end
+  groups: [ { code:'WP1', name:'…', span:'M1–M2', rows:[
+    { sub:'WP1.1', partner:'HEL', name:'…', start:1, end:2 },   // bar = start..end
   ]}],
   milestones:  [ { label:'Kick-off', month:0 }, … ],            // month = boundary
   deliverables:[ { label:'D1', month:2 }, … ],                  // month = end-of-month
@@ -133,8 +136,9 @@ export const wbs = { root:'…', partners, groups:[ { code:'WP1', name:'…', sp
 ```
 
 Rows/subs reference a partner by `id`; the bar colour, the `.sc` label colour,
-the WBS border and the legend all come from `partners[].color`. No partner names
-are hardcoded in the components.
+the WBS border and the legend all come from `partners[].color` — any number of
+partners (any CSS colour). No partner names are hardcoded in the components.
+The full version of this lives in `schedule.ts` (a 9-month, 3-partner sample).
 
 ---
 
