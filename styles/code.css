@@ -1,0 +1,89 @@
+/* ============================================================
+   Code blocks — Shiki output restyled to the Termina panel.
+   Slidev wraps highlighted code in .slidev-code / pre.shiki
+   ============================================================ */
+.slidev-layout .t-codepanel {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 48px;
+  /* Slidev core applies these to .slidev-code with !important, overriding any
+     plain font-size/padding we set. Drive them through the variables instead,
+     to match the standalone (25px, line-height 1.65). Extra top padding leaves
+     room for the overlaid badge / filename. */
+  --slidev-code-font-size: 25px;
+  --slidev-code-line-height: 1.65;
+  --slidev-code-padding: 30px 34px;
+  --slidev-code-margin: 0;
+}
+/* No filename: no header bar. The badge floats (absolute, top-right) and must
+   NOT reserve vertical space, so the code keeps the normal padding and starts
+   at the top; the badge sits in the right corner clear of the first line. */
+
+/* ---- dark panel (default): navy surface, force Shiki dark colours ---- */
+.slidev-layout .t-codepanel.code-dark {
+  background: var(--t-panel);
+  border: 1px solid rgba(135,199,242,.12);
+  box-shadow: 0 24px 60px rgba(12,30,55,.18);
+}
+.t-codepanel.code-dark .shiki { color: var(--shiki-dark, inherit) !important; }
+.t-codepanel.code-dark .shiki span { color: var(--shiki-dark) !important; }
+
+/* ---- light panel: paper surface, Shiki light colours (deck default) ---- */
+.slidev-layout .t-codepanel.code-light {
+  background: #fff;
+  border: 1px solid var(--t-hair);
+  box-shadow: 0 16px 40px rgba(15,40,75,.08);
+}
+
+/* Header bar (shown only when a filename is given): traffic-light dots + name + lang badge. */
+.t-codehead {
+  display: flex; align-items: center; gap: 9px;
+  padding: 18px 22px; border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.t-codehead .dot { width: 13px; height: 13px; border-radius: 50%; }
+.t-codehead .fname { margin-left: 10px; font-family: var(--t-font-mono); font-size: 18px; color: #9FB6CE; }
+.t-codehead .ext { margin-left: auto; font-family: var(--t-font-mono); font-size: 15px; color: var(--t-sky); border: 1px solid rgba(135,199,242,.3); border-radius: 7px; padding: 4px 12px; }
+
+/* Overlaid lang badge (shown only when there is no filename / no header bar).
+   Floats over the code (absolute) with an opaque panel-coloured background so a
+   long first line never shows through it. */
+.t-codebadge {
+  position: absolute; top: 14px; right: 16px; z-index: 2;
+  font-family: var(--t-font-mono); font-size: 15px; color: var(--t-sky);
+  border: 1px solid rgba(135,199,242,.3); border-radius: 7px; padding: 4px 12px;
+}
+.t-codepanel.code-dark .t-codebadge { background: var(--t-panel); }
+.t-codepanel.code-light .t-codebadge { background: #fff; }
+
+/* Light panel: restyle the chrome (dots stay, text/badge go dark-on-light). */
+.t-codepanel.code-light .t-codehead { border-bottom-color: var(--t-hair); }
+.t-codepanel.code-light .t-codehead .fname { color: var(--t-muted); }
+.t-codepanel.code-light .t-codehead .ext,
+.t-codepanel.code-light .t-codebadge {
+  color: var(--t-accent); border-color: color-mix(in srgb, var(--t-accent) 35%, white);
+}
+
+/* Slidev/Shiki code surface */
+.slidev-layout .t-codepanel pre,
+.slidev-layout .t-codepanel .slidev-code {
+  background: transparent !important;
+  margin: 0; padding: var(--slidev-code-padding);
+  font-family: var(--t-font-mono); font-size: 25px; line-height: 1.65;
+}
+.slidev-layout .t-codepanel code { font-family: var(--t-font-mono); }
+
+/* Optional caption below the code panel (the `::note::` slot). */
+.t-codenote { margin-top: 26px; font-size: 24px; line-height: 1.5; color: var(--t-muted); }
+.t-codenote strong { color: var(--t-ink); font-weight: 600; }
+.t-codenote code { font-family: var(--t-font-mono); }
+
+/* When you prefer manual highlighting (no Shiki), these tokens match the deck */
+.tok-kw { color: var(--t-kw); }
+.tok-fn { color: var(--t-sky); }
+.tok-ty { color: var(--t-ty); }
+.tok-num { color: var(--t-num); }
+.tok-cm { color: var(--t-cm); }
+.tok-str { color: var(--t-str); }
+.tok-at { color: var(--t-at); }
+.tok-ln { color: #3D526A; display: inline-block; width: 2ch; margin-right: 18px; text-align: right; }

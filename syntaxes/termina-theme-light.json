@@ -1,0 +1,118 @@
+{
+  "name": "termina-light",
+  "type": "light",
+  "colors": {
+    "editor.foreground": "#2A3340",
+    "editor.background": "#00000000"
+  },
+  "tokenColors": [
+    {
+      "scope": [
+        "comment",
+        "comment.line",
+        "comment.block",
+        "punctuation.definition.comment"
+      ],
+      "settings": {
+        "foreground": "#8A93A6"
+      }
+    },
+    {
+      "scope": [
+        "keyword",
+        "keyword.control",
+        "keyword.other",
+        "keyword.others",
+        "storage",
+        "storage.type",
+        "storage.modifier"
+      ],
+      "settings": {
+        "foreground": "#1F5FAE"
+      }
+    },
+    {
+      "scope": [
+        "keyword.operator",
+        "keyword.reservedOpNames",
+        "punctuation",
+        "punctuation.accessor",
+        "meta.brace",
+        "punctuation.paren.open",
+        "punctuation.paren.close",
+        "punctuation.definition.string.begin",
+        "punctuation.definition.string.end"
+      ],
+      "settings": {
+        "foreground": "#3B4758"
+      }
+    },
+    {
+      "scope": [
+        "constant.numeric",
+        "constant.language",
+        "constant.language.boolean"
+      ],
+      "settings": {
+        "foreground": "#B5650A"
+      }
+    },
+    {
+      "scope": [
+        "string",
+        "string.quoted",
+        "string.quoted.single.termina",
+        "string.quoted.double.termina",
+        "constant.character.escape",
+        "constant.character.escape.termina"
+      ],
+      "settings": {
+        "foreground": "#1E8A52"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.type",
+        "entity.name.type.termina",
+        "support.type",
+        "support.type.primitive.termina",
+        "entity.name.class",
+        "support.class"
+      ],
+      "settings": {
+        "foreground": "#0E8077"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.function",
+        "entity.name.function.termina",
+        "support.function",
+        "meta.function-call"
+      ],
+      "settings": {
+        "foreground": "#1C7CC2"
+      }
+    },
+    {
+      "scope": [
+        "meta.attribute",
+        "meta.attribute.termina"
+      ],
+      "settings": {
+        "foreground": "#6D49C0"
+      }
+    },
+    {
+      "scope": [
+        "variable",
+        "variable.other",
+        "meta.parameter",
+        "variable.parameter"
+      ],
+      "settings": {
+        "foreground": "#3B4758"
+      }
+    }
+  ]
+}

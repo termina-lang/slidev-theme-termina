@@ -1,0 +1,198 @@
+{
+  "scopeName": "source.fin",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#block-comments" },
+    { "include": "#string" },
+    { "include": "#attribute" },
+    { "include": "#keyword" },
+    { "include": "#constant" },
+    { "include": "#functions" },
+    { "include": "#types" }
+  ],
+  "repository": {
+    "expression": {
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#block-comments" },
+        { "include": "#string" },
+        { "include": "#attribute" },
+        { "include": "#keyword" },
+        { "include": "#constant" },
+        { "include": "#functions" },
+        { "include": "#types" }
+      ]
+    },
+
+    "comments": {
+      "patterns": [
+        {
+          "comment": "single line comments",
+          "name": "comment.line.double-slash",
+          "match": "//.*"
+        }
+      ]
+    },
+
+    "block-comments": {
+      "patterns": [
+        {
+          "comment": "empty block comments",
+          "name": "comment.block",
+          "begin": "/\\*\\*",
+          "end": "\\*/",
+          "patterns": [ { "include": "#block-comments" } ]
+        }
+      ]
+    },
+
+    "attribute": {
+      "comment": "attributes like #[priority(8: u32)]",
+      "name": "meta.attribute.termina",
+      "begin": "#\\[",
+      "end": "\\]",
+      "patterns": [
+        { "include": "#constant" },
+        { "include": "#string" }
+      ]
+    },
+
+    "keyword": {
+      "patterns": [
+        {
+          "comment": "Basic Types",
+          "name": "support.type.primitive.termina",
+          "match": "\\b(u8|u16|u32|u64|i8|i16|i32|i64|usize|bool|char|unit)\\b"
+        },
+        {
+          "comment": "Struct, enum and class types",
+          "name": "keyword.other",
+          "match": "\\b(struct|enum|class)\\b"
+        },
+        {
+          "comment": "Box Subtyping",
+          "name": "keyword.other",
+          "match": "\\b(box)\\b"
+        },
+        {
+          "comment": "Fixed Location Subtyping",
+          "name": "keyword.other",
+          "match": "\\b(loc)\\b"
+        },
+        {
+          "comment": "Ports Subtyping",
+          "name": "keyword.other",
+          "match": "\\b(access|sink|in|out)\\b"
+        },
+        {
+          "comment": "Global declarations",
+          "name": "keyword.other",
+          "match": "\\b(task|function|handler|resource|emitter|channel|const|constexpr|interface)\\b"
+        },
+        {
+          "comment": "Stmt",
+          "name": "keyword.control",
+          "match": "\\b(var|let|match|case|for|if|else|return|while|continue)\\b"
+        },
+        {
+          "comment": "Trigger",
+          "name": "keyword.control",
+          "match": "\\b(triggers)\\b"
+        },
+        {
+          "comment": "Provide/extends",
+          "name": "keyword.other",
+          "match": "\\b(provides|extends)\\b"
+        },
+        {
+          "comment": "Constants",
+          "name": "keyword.operator",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "comment": "Modules",
+          "name": "keyword.other",
+          "match": "\\b(import)\\b"
+        },
+        {
+          "comment": "Class methods",
+          "name": "keyword.other",
+          "match": "\\b(procedure|viewer|method|action)\\b"
+        },
+        {
+          "comment": "Casting keyword",
+          "name": "keyword.operator",
+          "match": "\\b(as)\\b"
+        },
+        {
+          "comment": "system-wide reserved names",
+          "name": "keyword.other",
+          "match": "\\b(option|termina|config)\\b"
+        },
+        {
+          "comment": "is variant operator",
+          "name": "keyword.operator",
+          "match": "\\b(is)\\b"
+        },
+        {
+          "comment": "reservedOpNames",
+          "name": "keyword.reservedOpNames",
+          "match": "(\\.|\\*|\\/|\\+|\\-|\\<\\<|\\>\\>|\\<|\\>|\\<\\=|\\>\\=|\\=\\=|\\!\\=|\\&|\\||\\^|\\&\\&|\\|\\||\\#|\\:|\\:\\:|\\=|\\-\\>|\\=\\>|\\.\\.|\\@|\\<\\-\\>|\\<\\-|\\%)"
+        },
+        {
+          "comment": "others, this matches &mut and &priv but since & is already a keyword, we only need to add mut and priv",
+          "name": "keyword.other",
+          "match": "(mut|priv)\\b"
+        }
+      ]
+    },
+
+    "functions": {
+      "comment": "identifiers immediately followed by a call paren",
+      "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()",
+      "name": "entity.name.function.termina"
+    },
+
+    "types": {
+      "comment": "user-defined types: CamelCase identifiers",
+      "match": "\\b[A-Z][A-Za-z0-9_]*\\b",
+      "name": "entity.name.type.termina"
+    },
+
+    "string": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.termina",
+          "begin": "'",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.termina" } },
+          "end": "'",
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.termina" } },
+          "patterns": [ { "name": "constant.character.escape.termina", "match": "\\\\." } ]
+        },
+        {
+          "name": "string.quoted.double.termina",
+          "begin": "\"",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.termina" } },
+          "end": "\"",
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.termina" } },
+          "patterns": [ { "name": "constant.character.escape.termina", "match": "\\\\." } ]
+        }
+      ]
+    },
+
+    "constant": {
+      "patterns": [
+        {
+          "comment": "Hexadecimal numbers",
+          "name": "constant.numeric",
+          "match": "\\b0x[0-9a-fA-F]+\\b"
+        },
+        {
+          "comment": "Decimal numbers",
+          "name": "constant.numeric",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    }
+  }
+}

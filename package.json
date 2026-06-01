@@ -1,0 +1,38 @@
+{
+  "name": "slidev-theme-termina",
+  "version": "0.1.0",
+  "description": "Termina brand theme for Slidev — navy/sky visual system with data-driven Gantt/WBS and branded code panels.",
+  "author": "The Termina Project Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/termina-lang/slidev-theme-termina.git"
+  },
+  "homepage": "https://github.com/termina-lang/slidev-theme-termina#readme",
+  "bugs": "https://github.com/termina-lang/slidev-theme-termina/issues",
+  "keywords": [
+    "slidev-theme",
+    "slidev",
+    "termina"
+  ],
+  "engines": {
+    "slidev": ">=0.48.0"
+  },
+  "//": "The npm package name MUST start with 'slidev-theme-' so that `theme: termina` resolves. The repo and the npm package share this name.",
+  "scripts": {
+    "dev": "slidev example.md --open",
+    "build": "slidev build example.md",
+    "export": "slidev export example.md"
+  },
+  "slidev": {
+    "defaults": {
+      "aspectRatio": "16/9",
+      "canvasWidth": 1920
+    },
+    "colorSchema": "light"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^0.49.0",
+    "@slidev/types": "^0.49.0"
+  }
+}

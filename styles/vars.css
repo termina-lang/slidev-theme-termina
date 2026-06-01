@@ -1,0 +1,51 @@
+/* ============================================================
+   Termina design tokens — single source of truth for the brand.
+   Edit these to retune the whole theme.
+   ============================================================ */
+:root {
+  /* Surfaces — space navy */
+  --t-navy:       #0B2140;
+  --t-navy-deep:  #06182F;
+  --t-panel:      #112844;   /* code panels, dark cards */
+
+  /* Brand accent — sky (from the logo) */
+  --t-sky:        #87C7F2;
+  --t-sky-soft:   #BBDDF7;
+
+  /* Signal accent — amber (use sparingly: emphasis, deliverables) */
+  --t-amber:      #F2A33C;
+
+  /* Partner slots for the work plan (Gantt / WBS). Generic names: a deck supplies
+     the real partner colours in its schedule.ts (e.g. `color: 'var(--t-prime)'`)
+     and can override these per deck via the headmatter `palette:`. */
+  --t-prime:      #2C6FA6;   /* partner 1 — blue  */
+  --t-subco:      #3E9B6E;   /* partner 2 — green */
+
+  /* UI accent (chrome: kickers, bullets, hero stats, agenda numbers, figtags…).
+     Independent of the partner colours: the deck `palette:` does NOT touch this,
+     so recolouring a partner never bleeds into generic chrome. */
+  --t-accent:     #2C6FA6;
+
+  /* Light surfaces (content slides / the book) */
+  --t-paper:      #F6F8FB;
+  --t-paper-2:    #ECF1F7;
+  --t-ink:        #15243B;
+  --t-muted:      #566879;
+  --t-hair:       #DBE4EE;
+
+  /* Syntax palette (code) */
+  --t-kw:   #74AEEA;
+  --t-ty:   #57B8AE;
+  --t-str:  #7FC78C;
+  --t-num:  #F2A33C;
+  --t-at:   #B6A0E2;
+  --t-cm:   #5C7799;
+
+  /* Typography */
+  --t-font-display: 'Space Grotesk', system-ui, sans-serif;
+  --t-font-body:    'IBM Plex Sans', system-ui, sans-serif;
+  --t-font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Slidev hooks */
+  --slidev-theme-primary: var(--t-sky);
+}

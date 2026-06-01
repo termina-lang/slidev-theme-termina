@@ -1,0 +1,61 @@
+/* ============================================================
+   Data-driven components: Gantt + WBS (work breakdown structure)
+   Positions are computed from data — never hand-placed.
+   ============================================================ */
+
+/* ---------- Gantt ---------- */
+.g2 { flex: 1; display: flex; flex-direction: column; margin-top: 16px; }
+.g2-months { display: grid; grid-template-columns: 380px 1fr; align-items: end; }
+.g2-months .mh { display: grid; }
+.g2-months .mh span { text-align: center; font-family: var(--t-font-mono); font-size: 15px; color: var(--t-muted); padding-bottom: 12px; }
+.g2-months .axis { grid-column: 2; height: 1px; background: var(--t-hair); }
+.g2-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.g2-grp { margin-top: 15px; }
+.g2-grp.first { margin-top: 8px; }
+.g2-gtitle { display: flex; align-items: baseline; gap: 14px; padding-bottom: 4px; }
+.g2-gtitle .c { font-family: var(--t-font-mono); font-weight: 700; font-size: 16px; color: var(--t-accent); letter-spacing: .03em; }
+.g2-gtitle .n { font-family: var(--t-font-display); font-weight: 600; font-size: 19px; color: var(--t-ink); }
+.g2-gtitle .mo { margin-left: auto; font-family: var(--t-font-mono); font-size: 13px; color: var(--t-muted); }
+.g2-row { display: grid; grid-template-columns: 380px 1fr; align-items: center; height: 46px; }
+.g2-lab { padding-left: 24px; padding-right: 28px; display: flex; flex-direction: column; gap: 3px; }
+.g2-lab .sc { font-family: var(--t-font-mono); font-size: 13px; font-weight: 700; color: var(--t-accent); letter-spacing: .04em; }
+.g2-lab .sn { font-family: var(--t-font-body); font-size: 17px; color: var(--t-ink); font-weight: 500; line-height: 1.15; }
+.g2-track { position: relative; display: grid; height: 100%; align-items: center; }
+.g2-track::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0, transparent calc(100%/var(--months) - 1px), color-mix(in srgb, var(--t-accent) 7%, transparent) calc(100%/var(--months) - 1px), color-mix(in srgb, var(--t-accent) 7%, transparent) calc(100%/var(--months))); }
+/* bar colour comes from the row's partner (inline `color`); fill + shadow follow it via currentColor */
+.g2-bar { position: relative; z-index: 1; grid-row: 1; height: 22px; border-radius: 11px; color: var(--t-accent); background: currentColor; box-shadow: 0 3px 10px color-mix(in srgb, currentColor 25%, transparent); }
+.g2-mile { display: grid; grid-template-columns: 380px 1fr; align-items: center; height: 60px; margin-top: 16px; border-top: 2px solid var(--t-hair); padding-top: 8px; }
+.g2-del { display: grid; grid-template-columns: 380px 1fr; align-items: center; height: 62px; padding-top: 2px; }
+.g2-mile .dl, .g2-del .dl { font-family: var(--t-font-mono); font-size: 16px; font-weight: 600; color: var(--t-ink); letter-spacing: .02em; }
+.g2-miletrack, .g2-deltrack { position: relative; height: 100%; }
+.g2-msk, .g2-mk { position: absolute; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; width: 0; z-index: 2; }
+.g2-msk { gap: 8px; }
+.g2-mk { gap: 9px; }
+.g2-msk .d { width: 16px; height: 16px; border-radius: 50%; background: var(--t-sky); border: 3px solid var(--t-accent); box-sizing: border-box; flex: 0 0 auto; }
+.g2-mk .d { width: 14px; height: 14px; background: var(--t-amber); transform: rotate(45deg); flex: 0 0 auto; }
+.g2-msk .t { font-family: var(--t-font-mono); font-size: 13.5px; color: var(--t-accent); font-weight: 700; white-space: nowrap; }
+.g2-mk .t { font-family: var(--t-font-mono); font-size: 13.5px; color: var(--t-muted); font-weight: 600; white-space: nowrap; }
+.g2-msk.start .t, .g2-mk.start .t { transform: translateX(50%); }
+.g2-msk.end .t, .g2-mk.end .t { transform: translateX(-50%); }
+.g2-leg { display: flex; gap: 32px; margin-top: 8px; font-family: var(--t-font-mono); font-size: 16px; color: var(--t-muted); align-items: center; }
+.g2-leg span { display: flex; align-items: center; gap: 10px; }
+.g2-leg i { width: 20px; height: 11px; border-radius: 4px; display: inline-block; }
+
+/* ---------- WBS (work-breakdown structure) ---------- */
+.wbs { flex: 1; display: flex; flex-direction: column; justify-content: center; margin-top: 8px; }
+.wbs-root { align-self: center; background: var(--t-accent); color: #fff; font-family: var(--t-font-display); font-weight: 600; font-size: var(--root-fs, 29px); padding: var(--root-pad, 17px 40px); border-radius: 13px; letter-spacing: -.01em; }
+.wbs-spine { width: 2px; height: 24px; background: var(--t-hair); align-self: center; }
+.wbs-bar { height: 2px; background: var(--t-hair); margin: 0 11%; }
+.wbs-cols { display: grid; gap: var(--wbs-gap, 30px); margin-top: 20px; }
+.wpcol { position: relative; display: flex; flex-direction: column; gap: 13px; }
+.wpcol::before { content: ""; position: absolute; top: -20px; left: 50%; width: 2px; height: 20px; background: var(--t-hair); }
+.wphdr { background: color-mix(in srgb, var(--t-accent) 8%, transparent); border: 1px solid color-mix(in srgb, var(--t-accent) 22%, transparent); border-radius: 11px; padding: var(--wp-pad, 19px); }
+.wphdr .code { font-family: var(--t-font-mono); font-size: var(--wp-code, 19px); color: var(--t-accent); font-weight: 700; }
+.wphdr .nm { font-family: var(--t-font-display); font-weight: 600; font-size: var(--wp-nm, 25px); line-height: 1.16; color: var(--t-ink); margin-top: 6px; }
+.wphdr .mo { font-family: var(--t-font-mono); font-size: var(--wp-mo, 16px); color: var(--t-muted); margin-top: 9px; }
+/* border-left and code colour come from the sub's partner (inline) */
+.subwp { background: #fff; border: 1px solid var(--t-hair); border-left: 3px solid var(--t-accent); border-radius: 9px; padding: var(--sub-pad, 18px); flex: 1; display: flex; flex-direction: column; }
+.subwp .scode { font-family: var(--t-font-mono); font-size: var(--sub-code, 17px); color: var(--t-accent); font-weight: 700; }
+.subwp .snm { font-family: var(--t-font-body); font-weight: 600; font-size: var(--sub-nm, 21px); line-height: 1.22; color: var(--t-ink); margin-top: 5px; }
+.subwp .who { font-family: var(--t-font-mono); font-size: var(--sub-who, 15px); color: var(--t-muted); margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: baseline; }
+.subwp .who b { color: var(--t-ink); font-weight: 600; }

@@ -1,0 +1,62 @@
+/* Base: fonts + slide canvas defaults */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+.slidev-layout {
+  font-family: var(--t-font-body);
+  color: var(--t-ink);
+  background: var(--t-paper);
+  padding: 0;
+  /* our layouts manage their own padding via .frame */
+}
+.slidev-layout h1, .slidev-layout h2, .slidev-layout h3 {
+  font-family: var(--t-font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.termina-mono { font-family: var(--t-font-mono); }
+
+/* The frame that all layouts share: full-bleed with generous padding */
+.t-frame {
+  position: absolute;
+  inset: 0;
+  padding: 86px 120px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header band (shared by content slides) */
+.t-kicker {
+  font-family: var(--t-font-mono);
+  font-size: 24px; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--t-accent);
+  display: flex; align-items: center; gap: 16px;
+}
+.t-kicker::before { content: ""; width: 46px; height: 2px; background: currentColor; opacity: .55; }
+.t-dark .t-kicker { color: var(--t-sky); }
+
+.t-crow { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.t-locator { font-family: var(--t-font-mono); font-size: 24px; letter-spacing: .12em; text-transform: uppercase; color: #9AA9B8; }
+.t-title { font-family: var(--t-font-display); font-weight: 600; font-size: 60px; line-height: 1.04; letter-spacing: -.02em; margin-top: 22px; max-width: 40ch; }
+.t-title:first-child { margin-top: 0; }
+.t-rule { height: 1px; background: var(--t-hair); margin-top: 36px; }
+
+/* Footer (auto slide number injected by layout) */
+.t-foot {
+  margin-top: auto; padding-top: 24px;
+  border-top: 1px solid var(--t-hair);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--t-font-mono); font-size: 19px; color: #8493A4; letter-spacing: .02em;
+}
+.t-foot .pageno { color: #6E8094; letter-spacing: .08em; }
+.t-dark .t-foot { border-color: rgba(135,199,242,.18); color: #7C97B5; }
+.t-dark .t-foot .pageno { color: #7C97B5; }
+
+/* Fix Slidev's "Goto" dialog (#slidev-goto-dialog) leaking its results list
+   onto every slide: with current fuse.js an empty query returns ALL slides,
+   so the autocomplete list is always rendered and hangs below the off-screen
+   (closed) container. Hide the whole dialog while its input is disabled
+   (= dialog closed); pressing `g` enables the input and shows it normally. */
+#slidev-goto-dialog:has(#slidev-goto-input:disabled) {
+  display: none !important;
+}
