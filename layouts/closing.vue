@@ -11,7 +11,7 @@ const logos = computed(() => $frontmatter.logos || [])
 <template>
   <div class="slidev-layout t-dark">
     <div class="t-frame">
-      <div class="t-wm"><img :src="logoTermina" alt="Termina"><span class="t">​<b>t</b>ermina</span></div>
+      <div class="t-wm"><img :src="logoTermina" alt="Termina"><span class="t">​<b>T</b>ermina</span></div>
       <div class="grow" style="flex:1;display:flex;flex-direction:column;justify-content:center">
         <h1 class="t-title" style="color:#fff;font-size:96px">{{ $frontmatter.title || 'Thank you.' }}</h1>
         <p class="lead" v-if="$frontmatter.lead" style="margin-top:24px;max-width:40ch;font-size:30px;color:#A9C0D6">{{ $frontmatter.lead }}</p>

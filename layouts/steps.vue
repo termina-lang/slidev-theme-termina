@@ -39,8 +39,8 @@ const pad = (i) => String(i).padStart(2, '0')
 .t-steps { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 .t-step { display: flex; align-items: center; gap: 34px; padding: 24px 0; border-bottom: 1px solid var(--t-hair); }
 .t-step:last-child { border-bottom: none; }
-.t-step-n { font-family: var(--t-font-display); font-weight: 600; font-size: 54px; line-height: 1; color: var(--t-accent); width: 92px; text-align: right; flex: 0 0 auto; letter-spacing: -.02em; }
+.t-step-n { font-family: var(--t-font-mono); font-weight: 600; font-size: 48px; line-height: 1; color: var(--t-accent); width: 92px; text-align: right; flex: 0 0 auto; letter-spacing: 0; }
 .t-step-body { flex: 1; }
 .t-step-title { font-family: var(--t-font-display); font-weight: 600; font-size: 31px; color: var(--t-ink); line-height: 1.15; }
-.t-step-text { font-size: 24px; line-height: 1.45; color: var(--t-muted); margin-top: 8px; max-width: 72ch; }
+.t-step-text { font-size: 24px; line-height: 1.45; color: var(--t-muted); margin-top: 8px; max-width: 88ch; }
 </style>

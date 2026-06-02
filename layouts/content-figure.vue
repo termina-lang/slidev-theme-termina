@@ -18,7 +18,7 @@ const { $frontmatter } = useSlideContext()
       <div class="t-figzone">
         <div class="t-stack t-mdstack"><slot /></div>
         <div class="t-figcard">
-          <div class="t-figtag" v-if="$frontmatter.figTag">{{ $frontmatter.figTag }}</div>
+          <div class="t-figtag" :class="'pos-' + ($frontmatter.figTagPos || 'top-left')" v-if="$frontmatter.figTag">{{ $frontmatter.figTag }}</div>
           <img v-if="$frontmatter.figImage" :src="$frontmatter.figImage" alt=""
                style="position:relative;max-width:88%;max-height:84%;object-fit:contain">
           <template v-else>
@@ -35,7 +35,7 @@ const { $frontmatter } = useSlideContext()
 </template>
 <style scoped>
 .t-mdstack :deep(ul) { display: flex; flex-direction: column; gap: 32px; list-style: none; padding: 0; }
-.t-mdstack :deep(li) { position: relative; padding-left: 42px; font-size: 26px; line-height: 1.46; color: var(--t-muted); max-width: 30ch; }
+.t-mdstack :deep(li) { position: relative; padding-left: 42px; font-size: 26px; line-height: 1.46; color: var(--t-muted); max-width: 44ch; }
 .t-mdstack :deep(li)::before { content: ""; position: absolute; left: 0; top: 9px; width: 16px; height: 16px; border-radius: 4px; background: var(--t-accent); }
 .t-mdstack :deep(li strong) { display: block; color: var(--t-ink); font-weight: 600; font-size: 29px; line-height: 1.2; margin-bottom: 6px; }
 </style>

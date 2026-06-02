@@ -226,7 +226,7 @@
 .t-wm { display: flex; align-items: center; gap: 16px; }
 .t-wm img { height: 54px; }
 .t-wm .t { font-family: var(--t-font-mono); font-weight: 500; font-size: 38px; letter-spacing: .02em; color: #E9F2FB; }
-.t-wm .t b { color: var(--t-sky); font-weight: 500; }
+.t-wm .t b { font-weight: 500; }
 
 /* partner logo row */
 .t-logos { display: flex; gap: 50px; align-items: center; }
@@ -259,10 +259,14 @@
 .t-hero-cap { font-size: 25px; color: var(--t-muted); margin-top: 22px; line-height: 1.5; max-width: 26ch; }
 
 /* ---- content: figure ---- */
-.t-figzone { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 88px; flex: 1; align-items: center; }
+.t-figzone { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; flex: 1; align-items: center; }
 .t-figcard { position: relative; height: 566px; border-radius: 18px; border: 1px solid var(--t-hair); background: #fff; box-shadow: 0 30px 70px rgba(15,40,75,.10); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; overflow: hidden; }
 .t-figcard::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(color-mix(in srgb, var(--t-accent) 5.5%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--t-accent) 5.5%, transparent) 1px, transparent 1px); background-size: 40px 40px; }
-.t-figtag { position: absolute; top: 20px; left: 20px; font-family: var(--t-font-mono); font-size: 14px; color: var(--t-accent); border: 1px solid var(--t-hair); border-radius: 7px; padding: 5px 11px; letter-spacing: .06em; }
+.t-figtag { position: absolute; font-family: var(--t-font-mono); font-size: 14px; color: var(--t-accent); border: 1px solid var(--t-hair); border-radius: 7px; padding: 5px 11px; letter-spacing: .06em; }
+.t-figtag.pos-top-left { top: 20px; left: 20px; }
+.t-figtag.pos-top-right { top: 20px; right: 20px; }
+.t-figtag.pos-bottom-left { bottom: 20px; left: 20px; }
+.t-figtag.pos-bottom-right { bottom: 20px; right: 20px; }
 
 /* ---- metrics ---- */
 .t-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 54px; flex: 1; align-content: center; margin-top: 20px; }
@@ -287,14 +291,16 @@
 .t-person .rl { font-size: 20px; color: var(--t-muted); margin-top: 4px; }
 
 /* ---- participants (photo-free, grouped by organisation) ---- */
-.t-parts { display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; flex: 1; align-content: start; margin-top: 40px; }
-.t-org-head { display: flex; align-items: baseline; gap: 14px; padding-bottom: 14px; border-bottom: 3px solid var(--org); margin-bottom: 22px; }
-.t-org-name { font-family: var(--t-font-display); font-size: 34px; font-weight: 700; color: var(--org); }
+/* columns + type sizes come from the layout (gridTemplateColumns + --pt-* vars) */
+.t-parts { display: grid; gap: 48px; flex: 1; align-content: stretch; margin-top: 36px; }
+.t-org { display: flex; flex-direction: column; }
+.t-org-head { display: flex; align-items: baseline; gap: 14px; padding-bottom: 14px; border-bottom: 3px solid var(--org); }
+.t-org-name { font-family: var(--t-font-display); font-size: var(--pt-org, 34px); font-weight: 700; color: var(--org); }
 .t-org-tag { font-family: var(--t-font-mono); font-size: 17px; color: var(--t-muted); text-transform: uppercase; letter-spacing: .04em; }
-.t-part { padding: 13px 0; border-bottom: 1px solid var(--t-hair); }
-.t-part:last-child { border-bottom: none; }
-.t-part-nm { font-family: var(--t-font-display); font-size: 27px; font-weight: 600; color: var(--t-ink); }
-.t-part-rl { font-size: 20px; color: var(--t-muted); margin-top: 3px; }
+/* people top-aligned (columns line up) with a comfortable, count-scaled gap */
+.t-people { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: var(--pt-gap, 48px); padding-top: 40px; }
+.t-part-nm { font-family: var(--t-font-display); font-size: var(--pt-nm, 31px); font-weight: 600; color: var(--t-ink); line-height: 1.15; }
+.t-part-rl { font-size: var(--pt-rl, 22px); color: var(--t-muted); margin-top: 4px; }
 
 /* ---- agenda ---- */
 .t-agenda { display: flex; flex-direction: column; flex: 1; justify-content: center; }

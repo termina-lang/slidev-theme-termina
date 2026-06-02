@@ -35,7 +35,7 @@ const logos = computed(() => $frontmatter.logos || [])
     <div class="t-frame">
       <div class="t-wm">
         <img :src="logoTermina" alt="Termina">
-        <span class="t">​<b>t</b>ermina</span>
+        <span class="t">​<b>T</b>ermina</span>
       </div>
       <div class="grow">
         <div class="t-kicker" v-if="$frontmatter.eyebrow">{{ $frontmatter.eyebrow }}</div>
