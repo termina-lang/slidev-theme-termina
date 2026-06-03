@@ -92,7 +92,7 @@ neither is set the title moves up.
 | `quote` | big statement | body = text, `*word*` → accent |
 | `team` | people grid (photos) | `people[]{name,role,photo}` |
 | `participants` | people by organisation | `groups[]{org,accent,tag?,people[]{name,role}}` |
-| `closing` | thank-you | `title`, `lead`, `contact` |
+| `closing` | thank-you | `title`, `lead`, `contact`, `contactLabel` |
 | `default` | free Markdown | `title`; body = anything (plain bullets) |
 
 ### Notes on the less obvious ones
@@ -108,6 +108,9 @@ neither is set the title moves up.
   code. `codeTheme: light` switches to a light panel.
 - **`participants` / `timeline` / `steps` accent**: a colour is a `palette` key,
   a token like `var(--t-prime)`, or any raw CSS colour.
+- **`closing` contact**: `contact` is the email/handle line; optional
+  `contactLabel` adds a small kicker above it (e.g. `Project contact`). The
+  contact block tightens up to the title when there is no `lead`.
 
 ---
 
@@ -176,6 +179,22 @@ Trim transparent margins off a logo before using it:
 ```bash
 npm i -D sharp
 node scripts/trim-logo.mjs sponsor-original.png public/sponsor_white.png
+```
+
+### Dark slides & PDF export
+
+The dark layouts (`cover` / `section` / `closing` / `metrics` / `quote`) draw a
+starfield with CSS gradients on screen. Those export to PDF as transparency
+soft-masks that Acrobat & Preview tear, so on the export render (`html.print`)
+the theme swaps the gradients for one **opaque** baked raster,
+`assets/dark-bg.png`. Text stays vector and selectable on top. Override per deck
+with `--t-dark-raster` on `.slidev-layout.t-dark`. Regenerate the PNG (after
+editing the starfield, or at a higher resolution) straight from the same CSS
+gradients:
+
+```bash
+npm i -D playwright-chromium
+node scripts/bake-bg.mjs --scale 2     # -> assets/dark-bg.png (3840×2160)
 ```
 
 ---
