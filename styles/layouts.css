@@ -218,7 +218,22 @@
   position: relative;
   width: 100%;
   height: 100%;
+  /* override target for the export-only raster swap below */
+  --t-dark-raster: url('../assets/dark-bg.png');
 }
+
+/* PDF / PPTX export only. On screen the 200 gradients above look best and
+   transition smoothly; but Chromium exports every gradient that fades to
+   transparent (rgba(..,0)) as a soft-mask / transparency group, which Acrobat
+   & Preview (CoreGraphics) render as torn white streaks. Slidev adds html.print
+   to <html> on the export render (isPrintMode), so there we swap the whole
+   gradient stack for a single OPAQUE baked raster (assets/dark-bg.png, RGB, no
+   alpha, 2x) -> zero soft masks, renders everywhere, text stays vector.
+   Per-deck override: set --t-dark-raster to another url(...). */
+html.print .slidev-layout.t-dark {
+  background: #06182F var(--t-dark-raster) center / cover no-repeat !important;
+}
+
 /* legacy hook: kept for layouts that want an explicit stars overlay element */
 .t-stars { position: absolute; inset: 0; pointer-events: none; }
 

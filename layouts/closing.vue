@@ -15,7 +15,10 @@ const logos = computed(() => $frontmatter.logos || [])
       <div class="grow" style="flex:1;display:flex;flex-direction:column;justify-content:center">
         <h1 class="t-title" style="color:#fff;font-size:96px">{{ $frontmatter.title || 'Thank you.' }}</h1>
         <p class="lead" v-if="$frontmatter.lead" style="margin-top:24px;max-width:40ch;font-size:30px;color:#A9C0D6">{{ $frontmatter.lead }}</p>
-        <div v-if="$frontmatter.contact" class="termina-mono" style="margin-top:30px;font-size:22px;color:var(--t-sky)">{{ $frontmatter.contact }}</div>
+        <div v-if="$frontmatter.contact" :style="{ marginTop: ($frontmatter.lead ? 28 : 52) + 'px' }">
+          <div v-if="$frontmatter.contactLabel" class="termina-mono" style="font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--t-sky);opacity:.6;margin-bottom:8px">{{ $frontmatter.contactLabel }}</div>
+          <div class="termina-mono" style="font-size:22px;color:var(--t-sky)">{{ $frontmatter.contact }}</div>
+        </div>
       </div>
       <div class="t-logos" style="justify-content:flex-end">
         <img v-for="(l,i) in logos" :key="i" :src="l.src" :style="{ height:(l.h||56)+'px' }" alt="">
