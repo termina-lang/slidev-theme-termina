@@ -28,7 +28,7 @@ const { $frontmatter } = useSlideContext()
 .t-mdgrid :deep(ul) { display: contents; list-style: none; }
 .t-mdgrid :deep(li) {
   position: relative; padding-left: 42px;
-  font-size: 26px; line-height: 1.46; color: var(--t-muted); max-width: 32ch;
+  font-size: 26px; line-height: 1.46; color: var(--t-muted); max-width: 38ch;
 }
 .t-mdgrid :deep(li)::before {
   content: ""; position: absolute; left: 0; top: 9px;

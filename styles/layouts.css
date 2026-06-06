@@ -234,6 +234,18 @@ html.print .slidev-layout.t-dark {
   background: #06182F var(--t-dark-raster) center / cover no-repeat !important;
 }
 
+/* PDF / PPTX export: Chromium rasterises blurred `box-shadow`s as hard grey
+   rectangles (visible in Acrobat/Preview, not on screen and not in poppler).
+   Drop the decorative card/figure/bar/code-panel shadows on export — they are
+   depth cues only; the borders carry the design. The timeline T0 node keeps its
+   ring (a 0-blur spread shadow, which rasterises cleanly). */
+html.print .t-card,
+html.print .t-figcard,
+html.print .g2-bar,
+html.print .t-codepanel {
+  box-shadow: none !important;
+}
+
 /* legacy hook: kept for layouts that want an explicit stars overlay element */
 .t-stars { position: absolute; inset: 0; pointer-events: none; }
 
