@@ -27,8 +27,9 @@ cp example.md my-talk.md
 npx slidev my-talk.md --open
 ```
 
-Per-deck assets (cover image, partner/sponsor logos, favicon) go in that deck's
-own `public/` folder — the theme does not ship project art.
+Per-deck assets (cover image, partner/sponsor logos) go in that deck's own
+`public/` folder — the theme does not ship project art. The favicon is
+brand-intrinsic and provided by the theme (see Assets), not a per-deck asset.
 
 ---
 
@@ -40,9 +41,9 @@ components/         Gantt.vue · WBS.vue (data diagrams) · SlideFoot.vue (foote
 styles/            vars (tokens) · base · layouts · components · code · diagrams
 syntaxes/          termina grammar + dark & light Shiki themes
 setup/shiki.ts     registers the `termina` language + dual code themes
-global-top.vue     injects the deck `palette:` as CSS tokens on :root
+global-top.vue     injects the deck `palette:` as CSS tokens on :root + the brand favicon
 global-bottom.vue  fills the auto slide-number in every footer
-public/            theme demo assets only (favicon); project art is per-deck
+assets/            brand art bundled into every deck (wordmark, favicon, dark bg)
 scripts/           trim-logo.mjs (crop transparent margins off a logo)
 example.md         the example deck (also the live documentation)
 schedule.ts        sample Gantt + WBS data for the example
@@ -62,7 +63,8 @@ Set these in the **first** frontmatter block of your `slides.md`:
 | `palette: { key: '#hex', … }` | deck-owned colours; each `key` overrides the theme token `--t-key` **everywhere** (Gantt/WBS/participants/legend). E.g. `prime`/`subco` recolour the work plan |
 | `footLeft` / `footRight` | footer text, left / right, on every content slide (empty by default; per-slide `foot:` overrides the right) |
 | `codeTheme: dark` \| `light` | code panel theme for the whole deck (overridable per slide) |
-| `favicon: /favicon.png` | browser-tab icon (a square image in the deck's `public/`) |
+
+(The browser-tab favicon is the brand mark, provided by the theme — not a deck setting.)
 
 ---
 
@@ -168,11 +170,13 @@ Real Termina highlighting via Shiki (TextMate grammar `source.fin`).
 
 ## Assets: theme-intrinsic vs per-deck
 
-- **Theme-intrinsic** (the brand wordmark `assets/logo_termina.png`): imported in
-  `cover.vue` / `closing.vue`, bundled by Vite — every deck gets it for free.
-- **Per-deck** (cover image, partner/sponsor logos, favicon): live in the
-  **deck's** `public/`, referenced by absolute path (`coverImage:`, `logos:`,
-  `favicon:`). The theme's `public/` holds only its own demo favicon.
+- **Theme-intrinsic** (the brand wordmark `assets/logo_termina.png` and the
+  favicon `assets/favicon.png`): bundled by Vite — every deck gets them for free.
+  The wordmark is imported in `cover.vue` / `closing.vue`; the favicon is injected
+  into `<head>` by `global-top.vue` (so it is the brand mark in every deck, not a
+  per-deck setting).
+- **Per-deck** (cover image, partner/sponsor logos): live in the **deck's**
+  `public/`, referenced by absolute path (`coverImage:`, `logos:`).
 
 Trim transparent margins off a logo before using it:
 

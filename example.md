@@ -1,16 +1,17 @@
 ---
 # ════════════════════════════════════════════════════════════════════
 #  slidev-theme-termina — EXAMPLE DECK (fictional data)
-#  A tour of every layout. Copy this file + schedule.ts next to your own
-#  slides.md to start a deck. Run:  npx slidev example.md --open
+#  A tour of every layout, and the dev harness for the theme itself.
+#  Run from this repo:  npm run dev   (or  npx slidev example.md --open)
+#  In YOUR OWN deck, install the theme and set  `theme: termina`  instead
+#  of the local `theme: ./` below (see README / termina-presentations).
 # ════════════════════════════════════════════════════════════════════
 # ── deck-wide settings ──
-theme: termina
+theme: ./
 canvasWidth: 1920
 aspectRatio: 16/9
 lineNumbers: true
 title: slidev-theme-termina — Example Deck
-favicon: /favicon.png
 htmlAttrs:
   lang: en
 # ── deck knobs (all optional; shown here for reference) ──

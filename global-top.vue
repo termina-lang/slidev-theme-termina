@@ -8,8 +8,28 @@
 //     subco: '#00833D'  ->  --t-subco  (recolours Gantt bars, WBS, legend, ...)
 import { onMounted, watch } from 'vue'
 import { useSlideContext } from '@slidev/client'
+import faviconUrl from './assets/favicon.png'
 
 const { $slidev } = useSlideContext()
+
+// Brand favicon, theme-provided: every deck gets the Termina tab icon for free
+// (imported asset, bundled by Vite — Slidev does NOT inherit the theme's
+// public/). Intentionally NOT a per-deck knob: we override whatever else is
+// present so the icon is always the brand mark.
+function applyFavicon() {
+  document.querySelectorAll('link[rel~="icon"]').forEach((l) => {
+    if (l.id !== 't-favicon' && l.parentNode) l.parentNode.removeChild(l)
+  })
+  let link = document.getElementById('t-favicon')
+  if (!link) {
+    link = document.createElement('link')
+    link.id = 't-favicon'
+    link.rel = 'icon'
+    link.type = 'image/png'
+    document.head.appendChild(link)
+  }
+  link.href = faviconUrl
+}
 
 function apply() {
   const p = ($slidev && $slidev.configs && $slidev.configs.palette) || {}
@@ -25,7 +45,7 @@ function apply() {
   el.textContent = decls ? `:root{ ${decls} }` : ''
 }
 
-onMounted(apply)
+onMounted(() => { apply(); applyFavicon() })
 watch(() => $slidev?.configs?.palette, apply, { deep: true })
 </script>
 <template><div style="display:none"></div></template>
