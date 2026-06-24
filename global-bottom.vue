@@ -1,21 +1,5 @@
 <script setup>
-// global-bottom.vue — fills every ".pageno" with "NN / TT" automatically,
-// so footers show the current slide number without you typing it.
-import { onMounted, watch } from 'vue'
-import { useNav } from '@slidev/client'
-
-const nav = useNav()
-function paint() {
-  // run after DOM settles
-  requestAnimationFrame(() => {
-    const total = String(nav.total.value).padStart(2, '0')
-    const cur = String(nav.currentPage.value).padStart(2, '0')
-    document.querySelectorAll('.slidev-page .pageno').forEach((el) => {
-      el.textContent = cur + ' / ' + total
-    })
-  })
-}
-onMounted(paint)
-watch(() => nav.currentPage.value, paint)
+// Page numbers are now rendered per-slide by SlideFoot.vue (works in export too),
+// so this global is a no-op kept only for theme structure.
 </script>
 <template><div style="display:none"></div></template>
