@@ -276,7 +276,7 @@ html.print .t-codepanel {
 .t-fbul { width: 16px; height: 16px; border-radius: 4px; background: var(--t-accent); margin-top: 9px; }
 .t-ftext { font-size: 26px; line-height: 1.46; color: var(--t-muted); max-width: 32ch; }
 .t-ftext b { display: block; color: var(--t-ink); font-weight: 600; font-size: 29px; line-height: 1.2; margin-bottom: 8px; }
-.t-fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 58px 100px; flex: 1; align-content: center; }
+.t-fgrid { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: column; gap: var(--fgrid-rowgap, 40px) 100px; flex: 1; align-content: center; }
 .t-stack { display: flex; flex-direction: column; gap: 38px; }
 
 /* ---- content: hero stat ---- */
